@@ -3,8 +3,7 @@ name: Selenium Tests
 on:
   push:
     branches:
-      - main
-      - pradnyasBranch
+      - pradnyasBranch   # ✅ your branch
 
 jobs:
   build:
@@ -17,7 +16,8 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
+          distribution: 'temurin'   # ✅ MUST ADD
           java-version: '11'
 
-      - name: Build and run tests
+      - name: Run Tests
         run: mvn clean test
