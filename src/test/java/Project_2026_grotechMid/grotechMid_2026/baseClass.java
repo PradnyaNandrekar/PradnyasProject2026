@@ -18,6 +18,8 @@ public class baseClass
 		if(browserName.equalsIgnoreCase("Chrome"))
 		{
 			driver = new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--headless");
 			driver.manage().window().maximize();
 		}
 		return driver;
