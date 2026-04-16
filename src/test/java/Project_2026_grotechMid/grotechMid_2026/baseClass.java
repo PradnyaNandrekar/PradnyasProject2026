@@ -18,10 +18,10 @@ public class baseClass
 	{
 		if(browserName.equalsIgnoreCase("Chrome"))
 		{
-//			ChromeOptions options = new ChromeOptions();
-//			options.addArguments("--headless");
-//			driver = new ChromeDriver(options);
-			driver = new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--headless");
+			driver = new ChromeDriver(options);
+//			driver = new ChromeDriver();
 			driver.manage().window().maximize();
 		}
 		driver.get("https://grotechminds.com/automate-me/");
