@@ -1,0 +1,35 @@
+name: Selenium Tests
+
+on:
+  push:
+    branches:
+      - pradnyasBranch
+  workflow_dispatch:
+    inputs:
+      browser:
+        description: 'Browser name'
+        required: false
+        default: 'chrome'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Run Tests
+        run: mvn clean test -Dbrowser=${{ github.event.inputs.browser || 'chrome' }}
